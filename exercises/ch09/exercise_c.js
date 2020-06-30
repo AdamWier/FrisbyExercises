@@ -7,6 +7,9 @@
 // Use `validateEmail`, `addToMailingList` and `emailBlast` to create a function
 // which adds a new email to the mailing list if valid, and then notify the whole
 // list.
-
+const trace = curry((tag, x) => {
+    console.log(tag, x);
+    return x;
+  });
 // joinMailingList :: Email -> Either String (IO ())
-const joinMailingList = undefined;
+const joinMailingList = compose(map(compose(chain(emailBlast), addToMailingList)), validateEmail);
